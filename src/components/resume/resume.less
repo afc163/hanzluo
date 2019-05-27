@@ -1,0 +1,30 @@
+#resume-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  margin: 20px auto;
+  .message {
+    margin: 8px;
+    text-align: center;
+  }
+  .narrow-screen {
+    img {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    .wide-screen {
+      display: none;
+    }
+    .narrow-screen {
+      display: block;
+    }
+  }
+  @media only screen and (min-width: 992px) {
+    .wide-screen {
+      display: block;
+    }
+    .narrow-screen {
+      display: none;
+    }
+  }
+}
