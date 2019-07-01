@@ -4,7 +4,8 @@ const router = express.Router()
 
 /* POST message */
 router.post('/message', (req, res) => {
-  res.sendStatus(200).end()
+  console.log(req.body)
+  res.status(200).json({}).end()
 })
 
 module.exports = router

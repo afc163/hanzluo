@@ -23,15 +23,17 @@ app.use((req, res, next) => {
   next(createError(404))
 })
 
-// error handler
-app.use((err, req, res) => {
-  // set locals, only providing error in development
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
+// We need 4 arguments here to make the first one to be error object
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  const error = {}
+  if (req.app.get('env') === 'development') {
+    error.name = err.name
+    error.message = err.message
+    error.stack = err.stack
+  }
 
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error')
+  res.status(500).send(error).end()
 })
 
 module.exports = app
