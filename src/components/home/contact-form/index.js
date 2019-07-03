@@ -15,16 +15,20 @@ class ContactForm extends Component {
     const { form } = this.props
     form.validateFields((err, values) => {
       if (!err) {
-        console.log(values)
         ajax({
           method:'POST',
           url: '/api/message',
           data: values,
-          success(data) {
-            console.log(data)
+          success() {
+            form.resetFields()
+            Modal.success({
+              title: 'Submit successful!',
+            })
           },
-          fail(err) {
-            console.log(err)
+          fail() {
+            Modal.error({
+              title: 'Submit failed!',
+            })
           },
         })
       }

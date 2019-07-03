@@ -7,6 +7,7 @@
 const app = require('./app')
 const debug = require('debug')('server:server')
 const http = require('http')
+const mongoose = require('mongoose')
 
 /**
  * Get port from environment and store in Express.
@@ -16,18 +17,30 @@ const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
 
 /**
- * Create HTTP server.
+ * Create MongoDB and HTTP server.
  */
 
+const MONGO_URL =
+  process.env.NODE_ENV === 'production'
+    ? 'mongodb://localhost:27017/hanzluo'
+    : 'mongodb://localhost:27017/hanzluo'
+
+mongoose.connect(MONGO_URL)
+
 const server = http.createServer(app)
+const db = mongoose.connection
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port)
-server.on('error', onError)
-server.on('listening', onListening)
+db.on('error', console.error.bind(console, 'connection error:'))
+db.once('open', () => {
+  console.log('DB connected, starting server') // eslint-disable-line no-console
+  server.on('error', onError)
+  server.on('listening', onListening)
+  server.listen(3000)
+})
 
 /**
  * Normalize a port into a number, string, or false.
