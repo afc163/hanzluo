@@ -8,7 +8,7 @@ const CONSTANTS_MAP = {
     return isProd ? this.PROD_ROOT_URL : this.DEV_ROOT_URL
   },
   DEV_MONGO_URL: 'mongodb://localhost:27017/hanzluo',
-  PROD_MONGO_URL: 'mongodb://localhost:27017/hanzluo',
+  PROD_MONGO_URL: 'mongodb://172.17.0.3:27017/hanzluo',
   get MONGO_URL() {
     return isProd ? this.PROD_MONGO_URL : this.DEV_MONGO_URL
   },

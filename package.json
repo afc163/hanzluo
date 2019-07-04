@@ -9,11 +9,15 @@
     "nodemon": "nodemon src/server/index",
     "server-watch": "webpack --config webpack/config.server.js",
     "client-watch": "node webpack/dev.server.js",
-    "client-build": "webpack --env.prod --config webpack/config.client.js",
-    "server-build": "webpack --env.prod --config webpack/config.server.js",
+    "client-build": "webpack --env.prod --config ./webpack/config.client.js",
+    "server-build": "webpack --env.prod --config ./webpack/config.server.js",
     "lint": "eslint --fix src webpack constants.js",
     "clean": "rm dist",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lhz516/hanzluo.git"
   },
   "keywords": [
     "Hanz"
