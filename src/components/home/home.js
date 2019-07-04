@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import { Layout, Row, Col, Card, Timeline } from 'antd'
 import ContactForm from './contact-form'
 import WordCloud from './react-d3-cloud'
+import { ROOT_URL } from './../../../constants'
 import './home.less'
 
 const { Content } = Layout
@@ -62,7 +63,7 @@ const Home = () => (
       <div id="avatar-and-intro">
         <Row type="flex" justify="center" align="middle">
           <Col className="avatar" xs={24} sm={6} md={6} lg={5} xl={4}>
-            <img src="http://localhost:3001/dist/public/images/hanz.jpg" alt="Hanz Luo" />
+            <img src={`${ROOT_URL}public/images/hanz.jpg`} alt="Hanz Luo" />
             <h1>
               Hanz Luo&nbsp;
               <i

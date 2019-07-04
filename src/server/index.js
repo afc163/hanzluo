@@ -8,6 +8,7 @@ const app = require('./app')
 const debug = require('debug')('server:server')
 const http = require('http')
 const mongoose = require('mongoose')
+const { MONGO_URL } = require('../../constants')
 
 /**
  * Get port from environment and store in Express.
@@ -20,20 +21,14 @@ app.set('port', port)
  * Create MongoDB and HTTP server.
  */
 
-const MONGO_URL =
-  process.env.NODE_ENV === 'production'
-    ? 'mongodb://localhost:27017/hanzluo'
-    : 'mongodb://localhost:27017/hanzluo'
-
 mongoose.connect(MONGO_URL)
-
 const server = http.createServer(app)
-const db = mongoose.connection
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
+const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => {
   console.log('DB connected, starting server') // eslint-disable-line no-console

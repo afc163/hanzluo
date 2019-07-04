@@ -3,13 +3,14 @@ const path = require('path')
 const AssetsPlugin = require('assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const { DEV_ROOT_URL, PROD_ROOT_URL } = require('../constants')
 
 module.exports = (env = {}) => {
   const isProd = !!env.prod
   const mainEntry = ['./src/client/index.js']
 
   if (!isProd) {
-    mainEntry.unshift('webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr&noInfo=true')
+    mainEntry.unshift(`webpack-hot-middleware/client?path=${DEV_ROOT_URL}__webpack_hmr&noInfo=true`)
   }
 
   return {
@@ -21,7 +22,7 @@ module.exports = (env = {}) => {
     output: {
       path: path.resolve(__dirname, '../dist/client'),
       filename: 'bundle-[hash].js',
-      publicPath: !isProd ? 'http://localhost:3001/dist/' : 'https://hanzluo.com/',
+      publicPath: !isProd ? DEV_ROOT_URL : PROD_ROOT_URL,
     },
     module: {
       rules: [

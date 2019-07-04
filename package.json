@@ -4,14 +4,14 @@
   "description": "Source code for hanzluo.com",
   "scripts": {
     "start": "npm-run-all --parallel client-watch server-watch nodemon",
-    "build": "npm-run-all server-build client-build",
+    "build": "npm-run-all --sequential server-build client-build",
     "prod": "cross-env NODE_ENV=production node src/server/index",
     "nodemon": "nodemon src/server/index",
     "server-watch": "webpack --config webpack/config.server.js",
     "client-watch": "node webpack/dev.server.js",
     "client-build": "webpack --env.prod --config webpack/config.client.js",
     "server-build": "webpack --env.prod --config webpack/config.server.js",
-    "lint": "eslint --fix src",
+    "lint": "eslint --fix src webpack constants.js",
     "clean": "rm dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

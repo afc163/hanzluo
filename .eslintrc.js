@@ -53,7 +53,7 @@ module.exports = {
     'no-multi-str': 2,
     'no-unused-vars': 1,
     'no-alert': 0,
-    'no-console': [2, { allow: ['warn', 'error'] }],
+    'no-console': [2, { allow: ['info', 'warn', 'error'] }],
     'no-useless-constructor': 1,
     'no-constant-condition': [2, { checkLoops: false }],
     'no-duplicate-imports': [2, { includeExports: true }],
