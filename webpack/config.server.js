@@ -7,7 +7,7 @@ module.exports = (env = {}) => {
   return {
     mode: isProd ? 'production' : 'development',
     target: 'node',
-    watch: true,
+    watch: !isProd,
     externals: [nodeExternals()],
     entry: './src/components/app.server.js',
     output: {
