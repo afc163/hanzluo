@@ -39,7 +39,7 @@ db.once('open', () => {
   console.log('DB connected, starting server') // eslint-disable-line no-console
   server.on('error', onError)
   server.on('listening', onListening)
-  server.listen(3000)
+  server.listen(port)
 })
 
 /**
