@@ -3,6 +3,7 @@ const path = require('path')
 const AssetsPlugin = require('assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
 const { DEV_SERVER_URL, PROD_ROOT_URL } = require('../constants')
 
 module.exports = (env = {}) => {
@@ -101,6 +102,7 @@ module.exports = (env = {}) => {
         // fileTypes: ['js', 'css', 'jpg'],
       }),
       new webpack.HotModuleReplacementPlugin(),
+      new CompressionPlugin(),
     ],
     devtool: !isProd ? 'cheap-module-source-map' : 'hidden-cheap-module-source-map',
   }
