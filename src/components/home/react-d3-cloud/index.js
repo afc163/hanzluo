@@ -3,12 +3,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ReactFauxDom from 'react-faux-dom'
-import * as d3 from 'd3'
-import cloud from 'd3-cloud'
-// import { Icon } from 'antd'
 
 const defaultFontSizeMapper = word => word.value
-const fill = d3.scaleOrdinal(d3.schemeCategory10)
 
 class WordCloud extends React.Component {
   static propTypes = {
@@ -44,13 +40,20 @@ class WordCloud extends React.Component {
   }
 
   componentDidMount() {
-    const windowWidth = window.innerWidth
-    this.renderChart()
+    import('./d3-libs').then(({ d3, cloud }) => {
+      this.d3 = d3
+      this.cloud = cloud
+      const windowWidth = window.innerWidth
+      this.fill = this.d3.scaleOrdinal(this.d3.schemeCategory10)
+      this.renderChart()
 
-    d3.select(window).on('resize', () => {
-      if (window.innerWidth >= 320 && window.innerWidth !== windowWidth) {
-        this.renderChart()
-      }
+      this.d3.select(window).on('resize', () => {
+        if (window.innerWidth >= 320 && window.innerWidth !== windowWidth) {
+          this.renderChart()
+        }
+      })
+    }).catch(e => {
+      console.error(e)
     })
   }
 
@@ -59,11 +62,12 @@ class WordCloud extends React.Component {
     // const { width, height } = this.state
     const wordCounts = data.map(text => ({ ...text }))
     // clear old words
-    d3.select(this.wordCloud)
+    this.d3
+      .select(this.wordCloud)
       .selectAll('*')
       .remove()
     // render based on new data
-    const layout = cloud()
+    const layout = this.cloud()
       .size([this.wordCloud.component.offsetWidth, this.wordCloud.component.offsetHeight])
       .font(font)
       .words(wordCounts)
@@ -71,7 +75,8 @@ class WordCloud extends React.Component {
       .rotate(rotate)
       .fontSize(fontSizeMapper)
       .on('end', words => {
-        d3.select(this.wordCloud)
+        this.d3
+          .select(this.wordCloud)
           .append('svg')
           // .attr('width', layout.size()[0])
           // .attr('height', layout.size()[1])
@@ -84,7 +89,7 @@ class WordCloud extends React.Component {
           .style('font-size', d => `${d.size}px`)
           .style('font-size', d => `${d.size}px`)
           .style('font-family', font)
-          .style('fill', (d, i) => fill(i))
+          .style('fill', (d, i) => this.fill(i))
           .attr('text-anchor', 'middle')
           .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
           .text(d => d.text)
