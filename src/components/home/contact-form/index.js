@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Form, Input, Button, Modal } from 'antd'
+import { withI18n } from 'react-simple-i18n'
 import ajax from '../../../client/utils/ajax'
 
 const { TextArea } = Input
@@ -36,7 +37,7 @@ class ContactForm extends Component {
   }
 
   render() {
-    const { form } = this.props
+    const { form, t } = this.props
     const { getFieldDecorator } = form
 
     return (
@@ -44,7 +45,7 @@ class ContactForm extends Component {
         <FormItem
           labelCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
           wrapperCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
-          label="Your Name"
+          label={t('home.contact.yourName')}
           hasFeedback
         >
           {getFieldDecorator('name', {
@@ -59,7 +60,7 @@ class ContactForm extends Component {
         <FormItem
           labelCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
           wrapperCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
-          label="E-mail"
+          label={t('home.contact.email')}
           hasFeedback
         >
           {getFieldDecorator('email', {
@@ -78,7 +79,7 @@ class ContactForm extends Component {
         <FormItem
           labelCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
           wrapperCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
-          label="Subject"
+          label={t('home.contact.subject')}
           hasFeedback
         >
           {getFieldDecorator('subject', {
@@ -93,7 +94,7 @@ class ContactForm extends Component {
         <FormItem
           labelCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
           wrapperCol={{ xs: { span: 24 }, sm: { span: 24 }, md: { span: 24 } }}
-          label="Content"
+          label={t('home.contact.content')}
           hasFeedback
         >
           {getFieldDecorator('content', {
@@ -106,7 +107,7 @@ class ContactForm extends Component {
           })(<TextArea />)}
         </FormItem>
         <Button size="large" type="primary" htmlType="submit">
-          Send
+          {t('home.contact.send')}
         </Button>
       </Form>
     )
@@ -115,4 +116,4 @@ class ContactForm extends Component {
 
 const WrappedContactForm = Form.create()(ContactForm)
 
-export default WrappedContactForm
+export default withI18n(WrappedContactForm)

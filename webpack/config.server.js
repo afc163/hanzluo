@@ -9,7 +9,7 @@ module.exports = (env = {}) => {
     target: 'node',
     watch: !isProd,
     externals: [nodeExternals()],
-    entry: './src/components/app.server.js',
+    entry: './src/components/app.js',
     output: {
       path: path.resolve(__dirname, '../dist/server'),
       filename: 'app.js',

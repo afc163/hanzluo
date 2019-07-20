@@ -1,6 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Layout, Row, Col, Card, Timeline } from 'antd'
+import { Layout, Row, Col, Card, Timeline, Icon } from 'antd'
+import { withI18n } from 'react-simple-i18n'
 import ContactForm from './contact-form'
 import WordCloud from './react-d3-cloud'
 import { ROOT_URL } from './../../../constants'
@@ -30,8 +31,8 @@ const data = [
   { text: 'MongoDB', value: 25 },
   { text: 'Ubuntu', value: 22 },
   { text: 'Docker', value: 18 },
-  { text: 'Blaze', value: 14 },
-  { text: 'DDP', value: 13 },
+  { text: 'Webpack', value: 14 },
+  { text: 'Jest', value: 13 },
   { text: 'Babel', value: 12 },
   { text: 'Eslint', value: 11 },
 ]
@@ -47,17 +48,17 @@ const scrollTo = (to, duration) => {
     setTimeout(() => {
       const newPos = currentPos + perTick
       window.scrollBy(null, perTick)
-      if (window.pageYOffset >= to) return
+      if (window.pageYOffset >= to - 1) return
       scroll(newPos)
     }, 10)
   }
   scroll(window.pageYOffset)
 }
 
-const Home = () => (
+const Home = ({ t }) => (
   <Content>
     <Helmet>
-      <title>Home | Hanz Luo</title>
+      <title>{t('nav.home')} | Hanz Luo</title>
     </Helmet>
     <div id="blue-bg-wrapper">
       <div id="avatar-and-intro">
@@ -65,21 +66,17 @@ const Home = () => (
           <Col className="avatar" xs={24} sm={6} md={6} lg={5} xl={4}>
             <img src={`${ROOT_URL}public/images/hanz.jpg`} alt="Hanz Luo" />
             <h1>
-              Hanz Luo&nbsp;
-              <i
-                onClick={() => scrollTo(document.body.scrollHeight - window.innerHeight, 250)}
+              {t('home.hanzluo')}&nbsp;
+              <Icon
+                type="mail"
                 id="send-message"
-                className="fa fa-envelope-o"
-                aria-hidden="true"
+                onClick={() => scrollTo(document.body.scrollHeight - window.innerHeight, 250)}
               />
             </h1>
-            <p>Full-stack Web Developer</p>
+            <p>{t('home.softwareEngineer')}</p>
           </Col>
           <Col className="intro" xs={24} sm={14} md={12} lg={9} xl={8}>
-            <p>
-              Hi, I'm a full-stack web developer in Bay Area. I'm familiar with JS front & back-end development,
-              database management, server configuration. Feel free to contact me!
-            </p>
+            <p>{t('home.introduction')}</p>
           </Col>
         </Row>
       </div>
@@ -98,22 +95,34 @@ const Home = () => (
         <Col className="timeline-right" xs={22} sm={20} md={7} lg={6} xl={5}>
           <Timeline>
             <Timeline.Item color="#001064" dot={<i className="fa fa-graduation-cap" aria-hidden="true" />}>
-              Jan. 2010 - Dec, 2013<br />Computer Science (BS) - CSUEB
+              Jan. 2010 - Dec, 2013
+              <br />
+              Computer Science (BS) - CSUEB
             </Timeline.Item>
             <Timeline.Item color="#001064" dot={<i className="fa fa-suitcase" aria-hidden="true" />}>
-              Feb. 2014 - Sep. 2014<br />Web Developer Intern - KleenSpeed
+              Feb. 2014 - Sep. 2014
+              <br />
+              Web Developer Intern - KleenSpeed
             </Timeline.Item>
             <Timeline.Item color="#001064" dot={<i className="fa fa-graduation-cap" aria-hidden="true" />}>
-              Sep. 2014 - Jun. 2016<br />Multimedia (MA) - CSUEB
+              Sep. 2014 - Jun. 2016
+              <br />
+              Multimedia (MA) - CSUEB
             </Timeline.Item>
             <Timeline.Item color="#001064" dot={<i className="fa fa-suitcase" aria-hidden="true" />}>
-              Sep, 2016 - Jan. 2018<br />Web Developer - Maodou
+              Sep, 2016 - Jan. 2018
+              <br />
+              Web Developer - Maodou
             </Timeline.Item>
             <Timeline.Item color="#001064" dot={<i className="fa fa-suitcase" aria-hidden="true" />}>
-              Jan. 2018 - Dec. 2018<br />Software Engineer UI - ServiceMax from GE Digital
+              Jan. 2018 - Dec. 2018
+              <br />
+              Software Engineer UI - ServiceMax from GE Digital
             </Timeline.Item>
             <Timeline.Item color="#001064" dot={<i className="fa fa-suitcase" aria-hidden="true" />}>
-              Dec. 2018 - Present<br />Software Engineer - LinkedIn
+              Dec. 2018 - Present
+              <br />
+              Software Engineer - LinkedIn
             </Timeline.Item>
           </Timeline>
         </Col>
@@ -139,7 +148,7 @@ const Home = () => (
           </div>
           <h3>Frameworks</h3>
           <div className="skill-desc">
-            <p>Meteor (node.js)</p>
+            <p>Node.js</p>
             <p>React</p>
             <p>Sass/Less</p>
             <p>Apollo GraphQL</p>
@@ -173,7 +182,7 @@ const Home = () => (
     </div>
     <div id="projects">
       <Row type="flex" justify="center">
-        <h1>Projects</h1>
+        <h1>{t('home.projects')}</h1>
       </Row>
       <Row className="project-list" type="flex" justify="center">
         <Col xs={22} sm={20} md={7} lg={6} xl={5}>
@@ -237,8 +246,8 @@ const Home = () => (
     <div id="contact">
       <Row className="contact-wrapper" type="flex" justify="center">
         <Col xs={22} sm={20} md={7} lg={6} xl={5}>
-          <h1 className="contact-title">Contact</h1>
-          <p className="contact-desc">Your message will be sent to my email after you submit the contact form.</p>
+          <h1 className="contact-title">{t('home.contact.title')}</h1>
+          <p className="contact-desc">{t('home.contact.description')}</p>
           <div className="social-medias">
             <a
               className="social-media-link"
@@ -262,7 +271,7 @@ const Home = () => (
             </a>
             <a
               className="social-media-link"
-              href="https://www.linkedin.com/in/hanzhang-luo-81103082?trk=hp-identity-name"
+              href="https://www.linkedin.com/in/hanzluo/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -287,4 +296,4 @@ const Home = () => (
   </Content>
 )
 
-export default Home
+export default withI18n(Home)
