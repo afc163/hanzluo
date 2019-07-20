@@ -21,7 +21,7 @@ app.set('port', port)
  * Create MongoDB and HTTP server.
  */
 
-mongoose.connect(MONGO_URL)
+mongoose.connect(MONGO_URL, { useNewUrlParser: true })
 const server = http.createServer(app)
 
 /**
