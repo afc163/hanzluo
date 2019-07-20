@@ -13,11 +13,14 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use('*.js', (req, res, next) => {
-  req.url = req.url + '.gz'
-  res.set('Content-Encoding', 'gzip')
-  next()
-})
+
+if (process.env.NODE_ENV === 'production') {
+  app.use('*.js', (req, res, next) => {
+    req.url = req.url + '.gz'
+    res.set('Content-Encoding', 'gzip')
+    next()
+  })
+}
 app.use(express.static(path.join(__dirname, '../../dist/client')))
 
 app.use('/api', apiRouter)
@@ -32,7 +35,7 @@ app.use((req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   const error = {}
-  if (req.app.get('env') === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     error.name = err.name
     error.message = err.message
     error.stack = err.stack

@@ -6,6 +6,7 @@ module.exports = (env = {}) => {
   const isProd = !!env.prod
   return {
     mode: isProd ? 'production' : 'development',
+    stats: 'errors-warnings',
     target: 'node',
     watch: !isProd,
     externals: [nodeExternals()],

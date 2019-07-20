@@ -14,7 +14,7 @@ const serverOptions = {
   lazy: false,
   publicPath: webpackConfig.output.publicPath,
   headers: { 'Access-Control-Allow-Origin': '*' },
-  stats: { colors: true },
+  stats: 'minimal',
 }
 
 const app = new Express()

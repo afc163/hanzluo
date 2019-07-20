@@ -4,10 +4,14 @@ const AssetsPlugin = require('assets-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const { DEV_SERVER_URL, PROD_ROOT_URL } = require('../constants')
+
+const emptyFunc = () => {}
 
 module.exports = (env = {}) => {
   const isProd = !!env.prod
+  const isAnalysis = !!env.analysis
   const mainEntry = ['./src/client/index.js']
 
   if (!isProd) {
@@ -16,6 +20,7 @@ module.exports = (env = {}) => {
 
   return {
     mode: isProd ? 'production' : 'development',
+    stats: 'errors-warnings',
     target: 'web',
     entry: {
       main: mainEntry,
@@ -35,6 +40,7 @@ module.exports = (env = {}) => {
               loader: MiniCssExtractPlugin.loader,
               options: {
                 sourceMap: !isProd,
+                hmr: !isProd,
               },
             },
             {
@@ -102,7 +108,8 @@ module.exports = (env = {}) => {
         // fileTypes: ['js', 'css', 'jpg'],
       }),
       new webpack.HotModuleReplacementPlugin(),
-      new CompressionPlugin(),
+      isProd ? new CompressionPlugin() : emptyFunc,
+      isAnalysis ? new BundleAnalyzerPlugin() : emptyFunc,
     ],
     devtool: !isProd ? 'cheap-module-source-map' : 'hidden-cheap-module-source-map',
   }

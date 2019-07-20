@@ -6,14 +6,15 @@
     "start": "npm-run-all --parallel server-watch client-watch nodemon",
     "build": "npm-run-all --sequential server-build client-build",
     "prod": "cross-env NODE_ENV=production node src/server/index",
-    "nodemon": "nodemon src/server/index",
+    "nodemon": "cross-env NODE_ENV=development nodemon src/server/index",
     "server-watch": "webpack --config webpack/config.server.js",
     "client-watch": "node webpack/dev.server.js",
     "client-build": "webpack --env.prod --config ./webpack/config.client.js",
     "server-build": "webpack --env.prod --config ./webpack/config.server.js",
     "lint": "eslint --fix src webpack constants.js",
     "clean": "rm dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "analysis": "webpack --env.prod --env.analysis --config ./webpack/config.client.js"
   },
   "repository": {
     "type": "git",
@@ -72,6 +73,7 @@
     "npm-run-all": "^4.1.5",
     "style-loader": "^0.23.1",
     "webpack": "^4.36.1",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.6",
     "webpack-dev-middleware": "^3.7.0",
     "webpack-dev-server": "^3.7.2",
