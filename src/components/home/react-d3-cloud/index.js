@@ -35,8 +35,6 @@ class WordCloud extends React.Component {
     this.wordCloud.style.setProperty('width', '100%')
     this.wordCloud.style.setProperty('height', '100%')
     this.wordCloud.style.setProperty('margin', '0 auto')
-    // this.wordCloud.style.setProperty('text-align', 'center')
-    // this.wordCloud.appendChild(<Icon key="1" style={{ fontSize: '36px', marginTop: '60px' }} type="loading" />)
   }
 
   componentDidMount() {

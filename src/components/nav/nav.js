@@ -25,7 +25,7 @@ const Nav = ({ location, t, i18n }) => {
             key="menu"
             onClick={() => setDrawerVisible(!isDrawerVisible)}
           >
-            <Icon type="menu" />
+            <i className="fa fa-bars" aria-hidden="true"></i>
             <Drawer closable={false} placement="left" visible={isDrawerVisible} onClose={() => setDrawerVisible(false)}>
               <Menu id="nav-mobile-drawer" selectedKeys={[location.pathname]}>
                 <Menu.Item className="nav-item-desktop" key="/">
@@ -66,7 +66,7 @@ const Nav = ({ location, t, i18n }) => {
               }
             >
               <a className="ant-dropdown-link" href="#">
-                {t('nav.language')} <Icon type="down" />
+                {t('nav.language')} <i className="fa fa-angle-down" aria-hidden="true"></i>
               </a>
             </Dropdown>
           </Menu.Item>

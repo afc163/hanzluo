@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Layout, Row, Col, Card, Timeline, Icon } from 'antd'
+import { Layout, Row, Col, Card, Timeline } from 'antd'
 import { withI18n } from 'react-simple-i18n'
 import ContactForm from './contact-form'
 import WordCloud from './react-d3-cloud'
@@ -67,8 +67,9 @@ const Home = ({ t }) => (
             <img src={`${ROOT_URL}public/images/hanz.jpg`} alt="Hanz Luo" />
             <h1>
               {t('home.hanzluo')}&nbsp;
-              <Icon
-                type="mail"
+              <i
+                className="fa fa-envelope-o"
+                aria-hidden="true"
                 id="send-message"
                 onClick={() => scrollTo(document.body.scrollHeight - window.innerHeight, 250)}
               />

@@ -25,6 +25,12 @@ module.exports = (env = {}) => {
     entry: {
       main: mainEntry,
     },
+    resolve: {
+      alias: {
+        // Temp solution for antd icons bundle size issue https://github.com/ant-design/ant-design/issues/12011
+        '@ant-design/icons/lib/dist$': path.resolve(__dirname, '../src/client/icons.js'),
+      },
+    },
     output: {
       path: path.resolve(__dirname, '../dist/client'),
       filename: 'bundle-[hash].js',
