@@ -11,7 +11,8 @@ module.exports = {
     __DEV__: false,
     __PROD__: false,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  plugins: ['prettier'],
+  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
   parserOptions: {
     sourceType: 'module',
   },
@@ -21,10 +22,20 @@ module.exports = {
     },
   },
   rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        trailingComma: 'all',
+        tabWidth: 2,
+        semi: false,
+        singleQuote: true,
+        printWidth: 120,
+      },
+    ],
     camelcase: [2, { properties: 'never' }],
     curly: [2, 'multi-line'],
     indent: [2, 2, { SwitchCase: 1 }],
-    quotes: [2, 'single'],
+    quotes: [2, 'single', { avoidEscape: true }],
     semi: [2, 'never'],
     eqeqeq: 2,
     yoda: 2,
@@ -91,8 +102,6 @@ module.exports = {
     'prefer-arrow-callback': 2,
     'template-curly-spacing': [2, 'never'],
     'react/prop-types': 0,
-    'react/no-direct-mutation-state': 0,
     'react/no-unescaped-entities': 0,
-    'react/no-find-dom-node': 0,
   },
 }

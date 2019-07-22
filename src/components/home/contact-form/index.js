@@ -11,13 +11,13 @@ class ContactForm extends Component {
     isLoading: false,
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault()
     const { form } = this.props
     form.validateFields((err, values) => {
       if (!err) {
         ajax({
-          method:'POST',
+          method: 'POST',
           url: '/api/message',
           data: values,
           success() {

@@ -41,7 +41,10 @@ app.use((err, req, res, next) => {
     error.stack = err.stack
   }
 
-  res.status(500).send(error).end()
+  res
+    .status(500)
+    .send(error)
+    .end()
 })
 
 module.exports = app

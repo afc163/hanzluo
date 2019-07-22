@@ -19,7 +19,7 @@ const Nav = ({ location, t, i18n }) => {
           selectedKeys={[location.pathname]}
           className={location.pathname === '/' ? 'nav-home' : ''}
         >
-          <Menu.Item 
+          <Menu.Item
             id="nav-mobile-menu-trigger"
             className="nav-item-mobile"
             key="menu"
@@ -53,14 +53,10 @@ const Nav = ({ location, t, i18n }) => {
               overlay={
                 <Menu>
                   <Menu.Item>
-                    <a onClick={() => i18n.setLang('enUS')}>
-                      English
-                    </a>
+                    <a onClick={() => i18n.setLang('enUS')}>English</a>
                   </Menu.Item>
                   <Menu.Item>
-                    <a onClick={() => i18n.setLang('zhCN')}>
-                      中文
-                    </a>
+                    <a onClick={() => i18n.setLang('zhCN')}>中文</a>
                   </Menu.Item>
                 </Menu>
               }

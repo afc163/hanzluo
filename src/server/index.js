@@ -23,6 +23,8 @@ app.set('port', port)
 
 mongoose.connect(MONGO_URL, { useNewUrlParser: true })
 const server = http.createServer(app)
+server.on('error', onError)
+server.on('listening', onListening)
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -31,10 +33,8 @@ const server = http.createServer(app)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 db.once('open', () => {
-  console.log('DB connected, starting server') // eslint-disable-line no-console
-  server.on('error', onError)
-  server.on('listening', onListening)
   server.listen(port)
+  console.info(`DB connected, starting server at port ${port}`)
 })
 
 /**
@@ -66,9 +66,7 @@ function onError(error) {
     throw error
   }
 
-  const bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port
+  const bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -91,8 +89,6 @@ function onError(error) {
 
 function onListening() {
   const addr = server.address()
-  const bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port
+  const bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
   debug('Listening on ' + bind)
 }

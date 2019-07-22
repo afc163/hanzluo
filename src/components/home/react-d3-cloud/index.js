@@ -38,21 +38,23 @@ class WordCloud extends React.Component {
   }
 
   componentDidMount() {
-    import('./d3-libs').then(({ d3, cloud }) => {
-      this.d3 = d3
-      this.cloud = cloud
-      const windowWidth = window.innerWidth
-      this.fill = this.d3.scaleOrdinal(this.d3.schemeCategory10)
-      this.renderChart()
+    import('./d3-libs')
+      .then(({ d3, cloud }) => {
+        this.d3 = d3
+        this.cloud = cloud
+        const windowWidth = window.innerWidth
+        this.fill = this.d3.scaleOrdinal(this.d3.schemeCategory10)
+        this.renderChart()
 
-      this.d3.select(window).on('resize', () => {
-        if (window.innerWidth >= 320 && window.innerWidth !== windowWidth) {
-          this.renderChart()
-        }
+        this.d3.select(window).on('resize', () => {
+          if (window.innerWidth >= 320 && window.innerWidth !== windowWidth) {
+            this.renderChart()
+          }
+        })
       })
-    }).catch(e => {
-      console.error(e)
-    })
+      .catch(e => {
+        console.error(e)
+      })
   }
 
   renderChart() {

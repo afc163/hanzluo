@@ -8,7 +8,8 @@ module.exports = {
     home: {
       hanzluo: 'Hanz Luo',
       softwareEngineer: 'Software Engineer',
-      introduction: 'Hi, I\'m a software engineer in Bay Area. I love open source, especially JS ecosystem. Feel free to contact me!',
+      introduction:
+        "Hi, I'm a software engineer in Bay Area. I love open source, especially JS ecosystem. Feel free to contact me!",
       projects: 'Projects',
       contact: {
         title: 'Contact',
@@ -30,7 +31,8 @@ module.exports = {
     home: {
       hanzluo: '罗含章',
       softwareEngineer: '软件工程师',
-      introduction: '大家好，我是一名身在硅谷湾区的软件工程师，喜欢各种开源，尤其是JS生态系统。如果有交流意向，欢迎联系我！',
+      introduction:
+        '大家好，我是一名身在硅谷湾区的软件工程师，喜欢各种开源，尤其是JS生态系统。如果有交流意向，欢迎联系我！',
       projects: '项目',
       contact: {
         title: '联系我',

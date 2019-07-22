@@ -1,12 +1,4 @@
-const ajax = ({
-  method,
-  url,
-  data,
-  success,
-  fail,
-  complete,
-  dataType = 'json',
-}) => {
+const ajax = ({ method, url, data, success, fail, complete, dataType = 'json' }) => {
   const xhr = new XMLHttpRequest()
   xhr.open(method, url)
   xhr.setRequestHeader('Content-Type', 'application/json')
