@@ -5,6 +5,10 @@ import { withI18n } from 'react-simple-i18n'
 import { Link } from 'react-router-dom'
 import './nav.less'
 
+function handleKeyPress(e) {
+  console.log(e);
+}
+
 const Nav = ({ location, t, i18n }) => {
   const [isDrawerVisible, setDrawerVisible] = useState(false)
 
@@ -50,20 +54,23 @@ const Nav = ({ location, t, i18n }) => {
           <Menu.Item key="4" id="language-dropdown-nav-item">
             <Dropdown
               placement="bottomRight"
+              trigger={['hover', 'click']}
               overlay={
                 <Menu>
                   <Menu.Item>
-                    <a onClick={() => i18n.setLang('enUS')}>English</a>
+                    <div role="menuitem" tabIndex={0} onKeyPress={handleKeyPress} onClick={() => i18n.setLang('enUS')}>
+                      English
+                    </div>
                   </Menu.Item>
                   <Menu.Item>
-                    <a onClick={() => i18n.setLang('zhCN')}>中文</a>
+                    <div onClick={() => i18n.setLang('zhCN')}>中文</div>
                   </Menu.Item>
                 </Menu>
               }
             >
-              <a className="ant-dropdown-link" href="#">
+              <div className="ant-dropdown-link" tabIndex={0} role="button">
                 {t('nav.language')} <i className="fa fa-angle-down" aria-hidden="true"></i>
-              </a>
+              </div>
             </Dropdown>
           </Menu.Item>
         </Menu>

@@ -31,6 +31,6 @@ const Schema = mongoose.Schema({
   },
 })
 
-const Course = mongoose.model('message', Schema)
+const Message = mongoose.model('message', Schema)
 
-module.exports = Course
+module.exports = Message

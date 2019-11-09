@@ -1,4 +1,15 @@
 # Hanz Luo
 
-* This will be the new source code of [hanzluo.com](https://hanzluo.com)
-* Plan to release later
+* This is the source code of [hanzluo.com](https://hanzluo.com)
+
+### Deploy
+
+```
+$  cd ~/web/hanzluo`
+```
+```
+$ git pull
+```
+```
+$ ./deploy.sh
+```

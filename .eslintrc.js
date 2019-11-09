@@ -11,8 +11,13 @@ module.exports = {
     __DEV__: false,
     __PROD__: false,
   },
-  plugins: ['prettier'],
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:prettier/recommended'],
+  plugins: ['prettier', 'jsx-a11y'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'plugin:jsx-a11y/recommended',
+  ],
   parserOptions: {
     sourceType: 'module',
   },
