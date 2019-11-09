@@ -18,9 +18,17 @@ if (process.env.NODE_ENV === 'production') {
   app.use('*.js', (req, res, next) => {
     req.url = req.url + '.gz'
     res.set('Content-Encoding', 'gzip')
+    res.set('Content-Type', 'text/javascript')
+    next()
+  })
+  app.use('*.css', (req, res, next) => {
+    req.url = req.url + '.gz'
+    res.set('Content-Encoding', 'gzip')
+    res.set('Content-Type', 'text/css')
     next()
   })
 }
+
 app.use(express.static(path.join(__dirname, '../../dist/client')))
 
 app.use('/api', apiRouter)

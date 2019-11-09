@@ -18,7 +18,7 @@ const template = ({ body, titleTag, initialState, assets }) => {
         <div id="root">${body}</div>
       </body>
       
-      <script src="${assets.main.js}"></script>
+      <script type="text/javascript" src="${assets.main.js}"></script>
     </html>
   `
 }
