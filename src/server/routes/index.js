@@ -34,6 +34,7 @@ router.get('/*', (req, res) => {
       body: appString,
       titleTag: helmet.title.toString(),
       assets,
+      isProd: process.env.NODE_ENV === 'production',
     }),
   )
 })
