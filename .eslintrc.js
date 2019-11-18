@@ -30,7 +30,7 @@ module.exports = {
     'prettier/prettier': [
       'error',
       {
-        trailingComma: 'all',
+        trailingComma: 'es5',
         tabWidth: 2,
         semi: false,
         singleQuote: true,
@@ -46,16 +46,6 @@ module.exports = {
     yoda: 2,
     'block-spacing': 2,
     'computed-property-spacing': 2,
-    'comma-dangle': [
-      2,
-      {
-        arrays: 'always-multiline',
-        objects: 'always-multiline',
-        imports: 'always-multiline',
-        exports: 'always-multiline',
-        functions: 'always-multiline',
-      },
-    ],
     'func-call-spacing': 2,
     'eol-last': 2,
     'no-empty': [2, { allowEmptyCatch: true }],

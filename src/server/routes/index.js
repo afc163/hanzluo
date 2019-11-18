@@ -20,7 +20,7 @@ router.get('/*', (req, res) => {
         context: {},
       },
       langData,
-    }),
+    })
   )
   const helmet = Helmet.renderStatic()
 
@@ -35,7 +35,7 @@ router.get('/*', (req, res) => {
       titleTag: helmet.title.toString(),
       assets,
       isProd: process.env.NODE_ENV === 'production',
-    }),
+    })
   )
 })
 

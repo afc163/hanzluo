@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
+const { getWebpackDefinePlugin } = require('./utils')
 
 module.exports = (env = {}) => {
   const isProd = !!env.prod
@@ -40,12 +41,14 @@ module.exports = (env = {}) => {
       ],
     },
     plugins: [
-      new webpack.DefinePlugin({
-        __CLIENT__: 'false',
-        __SERVER__: 'true',
-        __DEV__: JSON.stringify(!isProd),
-        __PROD__: JSON.stringify(isProd),
-      }),
+      new webpack.DefinePlugin(
+        getWebpackDefinePlugin({
+          __CLIENT__: false,
+          __SERVER__: true,
+          __DEV__: !isProd,
+          __PROD__: isProd,
+        })
+      ),
     ],
   }
 }

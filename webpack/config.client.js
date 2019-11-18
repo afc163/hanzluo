@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const { getWebpackDefinePlugin } = require('./utils')
 const { DEV_SERVER_URL, PROD_ROOT_URL } = require('../constants')
 
 const emptyFunc = () => {}
@@ -93,12 +94,14 @@ module.exports = (env = {}) => {
       ],
     },
     plugins: [
-      new webpack.DefinePlugin({
-        __CLIENT__: 'true',
-        __SERVER__: 'false',
-        __DEV__: JSON.stringify(!isProd),
-        __PROD__: JSON.stringify(isProd),
-      }),
+      new webpack.DefinePlugin(
+        getWebpackDefinePlugin({
+          __CLIENT__: true,
+          __SERVER__: false,
+          __DEV__: !isProd,
+          __PROD__: isProd,
+        })
+      ),
       new CopyPlugin([
         {
           from: 'src/server/public/',

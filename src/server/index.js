@@ -21,7 +21,10 @@ app.set('port', port)
  * Create MongoDB and HTTP server.
  */
 
-mongoose.connect(MONGO_URL, { useNewUrlParser: true })
+mongoose.connect(MONGO_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 const server = http.createServer(app)
 server.on('error', onError)
 server.on('listening', onListening)

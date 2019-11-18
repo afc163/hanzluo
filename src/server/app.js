@@ -3,12 +3,21 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const rateLimit = require('express-rate-limit')
 
+const { getRealIp } = require('../utils/req-helpers')
 const indexRouter = require('./routes/index')
 const apiRouter = require('./api')
 
 const app = express()
 
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 20, // limit each IP to 20 requests per windowMs
+  keyGenerator: getRealIp,
+})
+
+app.use(limiter)
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
