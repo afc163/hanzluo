@@ -34,7 +34,10 @@ server.on('listening', onListening)
  */
 
 const db = mongoose.connection
-db.on('error', console.error.bind(console, 'connection error:'))
+db.on('error', err => {
+  server.listen(port)
+  console.error(err)
+})
 db.once('open', () => {
   server.listen(port)
   console.info(`DB connected, starting server at port ${port}`)
