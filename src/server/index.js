@@ -23,7 +23,7 @@ app.set('port', port)
 
 mongoose.connect(MONGO_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useUnifiedTopology: true,
 })
 const server = http.createServer(app)
 server.on('error', onError)
