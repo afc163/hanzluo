@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  hanzluo:
+    image: hanzluo:latest
+    restart: always
+    container_name: hanzluo
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
+  mongodb:
+    image: mongo:4.2.1-bionic
+    restart: always
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - type: volume
+        source: mongo_volume
+        target: /data/db
+    command: mongod --bind_ip_all
+volumes:
+  mongo_volume:
+    external: true
+
