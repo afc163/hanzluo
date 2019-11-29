@@ -16,7 +16,9 @@ $ ./deploy.sh
 
 ### Other
 
-Run Mongo Docker
 ```
-$ sudo docker run --name mongodb --restart always --net bridge -p 27017:27017 -dit mongo:3.6.15-xenial mongod --bind_ip_all
+Create external MongoDB volume
 ```
+$ docker volume create --name=mongo_volume
+```
+Docker volume doc: https://docs.docker.com/storage/volumes/
