@@ -9,7 +9,7 @@ module.exports = {
       hanzluo: 'Hanz Luo',
       softwareEngineer: 'Software Engineer',
       introduction:
-        "Hi, I'm a software engineer in Bay Area. I love open source, especially JS ecosystem. Feel free to contact me!",
+        "Hi, I'm a software engineer in Bay Area. I love open source, especially JavaScript ecosystem. Feel free to contact me!",
       projects: 'Projects',
       contact: {
         title: 'Contact',
