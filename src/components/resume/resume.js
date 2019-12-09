@@ -12,11 +12,12 @@ const Resume = () => (
     <Col className="wide-screen" xs={24} sm={22} md={18} lg={16} xl={14}>
       <p className="message">
         If the PDF plugin doesn't show correctly,{' '}
-        <a href="/Hanz-Resume.pdf" target="_blank ">
+        <a href="/public/Hanz-Resume.pdf" target="_blank ">
           click here
         </a>
       </p>
       <object
+        aria-label="Hanz Resume PDF"
         width="100%"
         height="1200px"
         type="application/pdf"
